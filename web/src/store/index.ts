@@ -1,19 +1,44 @@
-import { atom } from 'nanostores';
+import { atom } from 'nanostores'
+import axios from 'axios'
 
-export const users = atom([
-    {
-        "name": "Adam",
-        "account": 1000000
-    },
-    {
-        "name": "<script>alert('Hello World');</script>",
-        "account": 1000000
-    }
-]);
+// export type LoadingStateValue = '' | 'loading' | 'loaded'
+export const authenticated = atom<Boolean>(false)
+export const token = atom<String>('')
 
-export const comments = atom([
-    {
-        "title": "How do I minmax my FOMO",
-        "desc": ""
-    }
-]);
+export const login = async (username, password) => {
+    return await axios({
+        method: 'post',
+        headers:{"Content-Type": "multipart/form-data"},
+        url: "http://localhost:5000/token",
+        data:{
+            "username": username,
+            "password": password
+        }
+
+    }).then(response => {
+        console.log(response);
+        authenticated.set(true);
+        token.set(response.data.access_token);
+        return true;
+
+    }).catch(error => {
+        console.log(error);
+        return false;
+    });
+}
+
+export const hydrate = async () => {
+    return await axios({
+        method: 'get',
+        headers:{"Authorization": `Bearer ${token.value}`},
+        url: "http://localhost:5000/protected"
+
+    }).then(response => {
+        console.log(response)
+        return true;
+
+    }).catch(error => {
+        console.log(error)
+        return false;
+    });
+}
