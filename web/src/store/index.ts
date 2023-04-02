@@ -4,6 +4,7 @@ import axios from 'axios'
 // export type LoadingStateValue = '' | 'loading' | 'loaded'
 export const authenticated = atom<Boolean>(false)
 export const token = atom<String>('')
+export const profile = atom<Object>({})
 
 export const login = async (username, password) => {
     return await axios({
@@ -35,6 +36,7 @@ export const hydrate = async () => {
 
     }).then(response => {
         console.log(response)
+        profile.set(response.data)
         return true;
 
     }).catch(error => {

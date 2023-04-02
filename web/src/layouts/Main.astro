@@ -4,6 +4,10 @@ const { title } = Astro.props;
 
 // Styles
 import '../main.css';
+
+// Fonts
+import "@fontsource/montserrat" 
+import "@fontsource/quattrocento"
 ---
 
 <!DOCTYPE html>
@@ -24,7 +28,7 @@ import '../main.css';
             fout(() => document.body.classList.toggle("hidden"));
         </script>
     </head>
-    <body class="hidden">
+    <body class="hidden w-screen h-screen grid grid-cols-[33%] grid-rows-[0.25fr_1fr] justify-center text-amber-600 bg-black">
         <script is:inline>0</script>
         <slot />
     </body>

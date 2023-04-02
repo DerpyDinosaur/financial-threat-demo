@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
+import os
+import json
 
 app = FastAPI()
 origins = [ "http://localhost:3000", "http://fomocoin" ]
@@ -16,20 +18,26 @@ app.add_middleware(
 )
 
 # Set up JWT authentication
-SECRET_KEY = "secret"
+JWT_SECRET = "secret"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Sample user data for testing purposes
-database = {
-    "albalamia": {
-        "username": "albalamia",
-        "password": "password",
-        "disabled": False,
-    }
-}
+# database = {
+#     "adam": {
+#         "username": "adam",
+#         "password": "password",
+#         "wallet": 2.8,
+#         "disabled": False,
+#     },
+#     "ian": {
+#         "username": "ian",
+#         "password": "password",
+#         "disabled": False,
+#     }
+# }
 
 # Generate the access token for a user
 def GenerateToken(data:dict, delta:timedelta):
@@ -37,11 +45,14 @@ def GenerateToken(data:dict, delta:timedelta):
     expire = datetime.utcnow() + delta
     toEncode.update({"exp": expire})
 
-    jsonwebtoken = jwt.encode(toEncode, SECRET_KEY, algorithm=ALGORITHM)
+    jsonwebtoken = jwt.encode(toEncode, JWT_SECRET, algorithm=ALGORITHM)
     return jsonwebtoken
 
 # Find user in database
 def GetUser(username:str):
+    with open("database.json", 'r') as f:
+        database = json.load(f)
+
     if username in database:
         user = database[username]
         return user
@@ -67,16 +78,21 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 # Protected route that requires authentication
 @app.get("/protected")
 async def hydrate(token: str = Depends(oauth2_scheme)):
-    print(token)
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
             raise HTTPException(status_code=401, detail="Invalid authentication credentials")
 
-        token_data = {"username": username}
+        user = GetUser(username)
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
 
-    return {"message": "Hello, world!"}
+    return user
+
+
+# Get the secret identifier
+@app.get("/2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b")
+async def GetSecret():
+    return JWT_SECRET
 
