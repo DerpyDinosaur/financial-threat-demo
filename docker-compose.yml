@@ -2,6 +2,16 @@ version: '3.9'
 
 services:
 ##### Production #####
+    # web:
+    #     profiles: ["prod"]
+    #     build: 
+    #         context: web
+    #         target: prod
+    #     volumes:
+    #         - demo:/web/dist
+    #     depends_on:
+    #         - nginx
+
     backend:
         profiles: ["prod"]
         build:

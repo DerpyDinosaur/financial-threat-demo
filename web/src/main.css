@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *{
 	color: #FF7315;
 	-webkit-user-select: none;
