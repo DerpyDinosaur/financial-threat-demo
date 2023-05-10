@@ -1,0 +1,63 @@
+---
+export interface Props { title: string; }
+const { title } = Astro.props;
+
+// Styles
+import '../slides.css';
+
+// Fonts
+import "@fontsource/source-code-pro";
+import "@fontsource/amatic-sc";
+---
+
+<!DOCTYPE html>
+<html lang="en" class="w-screen h-screen">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <script is:inline>
+            let fout = (cb) => {
+                document.readyState === 'interactive' || document.readyState === 'complete'
+                    ? cb()
+                    : document.addEventListener('DOMContentLoaded', cb);
+            };
+            fout(() => document.body.classList.toggle("opacity-0"));
+            ////////////////////////////////////////////////////////////////
+            const slicedUrl = window.location.href.split('/');
+            const currentSlide = slicedUrl[slicedUrl.length - 1];
+            const endOfPreso = 4;
+
+            const forward = () => {
+                if(Number(currentSlide)+1 == endOfPreso) return;
+                window.location.href = `${window.location.origin}/presentation/${Number(currentSlide)+1}`;
+            }
+
+            const backward = () => {
+              if(Number(currentSlide)-1 == 0) return;
+              window.location.href = `${window.location.origin}/presentation/${Number(currentSlide)-1}`;
+            }
+
+            // Left Click
+            document.addEventListener('click', function() {
+                forward();
+            });
+            // Right Click
+            document.addEventListener('contextmenu', function(event) {
+                // Prevents RIGHT CLICK from working
+                event.preventDefault();
+                backward();
+            });
+            document.addEventListener('keydown', function(event){
+                if (event.keyCode === 39) { forward(); }
+                if (event.keyCode === 37) { backward(); }
+            })
+        </script>
+    </head>
+    <body class="w-screen h-screen opacity-0 transition-opacity ease-in-out duration-500 delay-200">
+        <script is:inline>0</script>
+        <slot/>
+    </body>
+</html>
