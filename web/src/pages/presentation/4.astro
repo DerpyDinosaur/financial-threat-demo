@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/SlideShow.astro';
+---
+<Layout title="Slide 4">
+    <main class="p-8 w-full h-full grid grid-rows-[auto_1fr]">
+        <section class="flex justify-left items-center">
+            <h1 class="text-8xl">What do these bad practices look like?</h1>
+        </section>
+        <section class="flex flex-col gap-8 justify-center items-left">
+            <p class="mb-8 text-5xl">
+                Before we start, lets get primed
+            </p>
+
+            <p class="text-4xl">Application Programmable Interface (API)</p>
+            <ul class="ml-16 list-disc text-3xl">
+                <li>
+                    Allows developers to interact with a remote entity using a set of standards, routines and tools. This then helps develop new software.
+                </li>
+            </ul>
+
+            <p class="text-4xl">JSON Web Token (JWT)</p>
+            <ul class="ml-16 list-disc text-3xl">
+                <li>
+                    JWT's are used for authentication and authorization over the internet.
+                </li>
+                <li>
+                    Commonly used to access API's on servers without the need of the server knowing about the user.
+                </li>
+            </ul>
+        </section>
+    </main>
+</Layout>

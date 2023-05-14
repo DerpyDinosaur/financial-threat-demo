@@ -8,6 +8,9 @@ import '../slides.css';
 // Fonts
 import "@fontsource/source-code-pro";
 import "@fontsource/amatic-sc";
+
+const slides = await Astro.glob('../pages/presentation/*.astro');
+const slideCount = slides.length+1;
 ---
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@ import "@fontsource/amatic-sc";
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
-        <script is:inline>
+        <script is:inline define:vars={{ slideCount }}>
             let fout = (cb) => {
                 document.readyState === 'interactive' || document.readyState === 'complete'
                     ? cb()
@@ -28,7 +31,7 @@ import "@fontsource/amatic-sc";
             ////////////////////////////////////////////////////////////////
             const slicedUrl = window.location.href.split('/');
             const currentSlide = slicedUrl[slicedUrl.length - 1];
-            const endOfPreso = 4;
+            const endOfPreso = slideCount;
 
             const forward = () => {
                 if(Number(currentSlide)+1 == endOfPreso) return;
