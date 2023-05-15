@@ -51,9 +51,35 @@ Restaurant requires ID to prove you are on the guest list
 ## Slide 5
 Start the demonstration
 
-1.
+- 	Log in as Adam
+- 	Log in as Ian
+- 	Pull out my JWT
+- 	Visit jwt.io, show how the JWT functions
+- 	Show reconnaissance for locating a hidden endpoint this would include
+	-	Brute forcing endpoints
+	-	Checking for documentation
+	-	Discovering active protocols like http, https, PUT, DELETE, POST, GET
+- 	Discover the lengthy string endpoint that reveals the key to the token.
+	- Try a get request
+	- Try a post request
+	- Try posting my token
+-	Now that I know the secret move back to JWT 
 
 ## Slide 6
+**Out of 100 Businesses**
+Hong Kong---43%
+Indonesia---52%
+Japan-------52%
+Singapore---46%
+
+Half of those incidents reported result in data loss
+
+**Out of 100 Businesses**
+APAC Report 
+Australia
+
+
+
 Do not derive who is better or worse with these numbers. This is to get everyone on the same page.
 
 Refer to Malaysia’s Fraud and Spam stats for “Scam”
