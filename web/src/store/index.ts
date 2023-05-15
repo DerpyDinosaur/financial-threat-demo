@@ -32,7 +32,7 @@ export const hydrate = async () => {
     return await axios({
         method: 'get',
         headers:{"Authorization": `Bearer ${token.value}`},
-        url: "http://localhost:5000/protected"
+        url: "http://localhost:5000/hydrate"
 
     }).then(response => {
         console.log(response)

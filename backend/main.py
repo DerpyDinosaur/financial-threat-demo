@@ -59,6 +59,16 @@ def GetUser(username:str):
 
     return None
 
+# Get all users
+@app.get("/users")
+async def getAllUsers():
+    with open("database.json", 'r') as f:
+        database = json.load(f)
+
+    data = {"users":[user for user in database.keys()]}
+
+    return data
+
 # Obtain token
 @app.post("/token")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
@@ -76,7 +86,7 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 
 
 # Protected route that requires authentication
-@app.get("/protected")
+@app.get("/hydrate")
 async def hydrate(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=[ALGORITHM])
@@ -91,8 +101,63 @@ async def hydrate(token: str = Depends(oauth2_scheme)):
     return user
 
 
+# Payment from one to another
+@app.get("/payment")
+async def payment(token: str=Depends(oauth2_scheme), user:str=None, amount:int=0):
+    try:
+        payload = jwt.decode(token, JWT_SECRET, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+
+        payee = GetUser(username)
+        reciever = GetUser(user)
+
+        if payee == None or reciever == None: raise JWTError
+    except JWTError:
+        raise HTTPException(status_code=400, detail="An error occured")
+
+    if amount <= 0:
+        raise HTTPException(status_code=400, detail="No amount specified")
+
+    if amount > payee["wallet"]:
+        raise HTTPException(status_code=400, detail="Not enough money in wallet")
+
+    now = datetime.now()
+    dateString = now.strftime("%d/%m/%Y")
+    
+    # payee
+    payHist = {
+        "date": dateString,
+        "action": "debit",
+        "amount": amount,
+        "total": payee["wallet"]-amount
+    }
+    payee["wallet"] = payee["wallet"]-amount
+    payee["history"].insert(0, payHist)
+
+    # reciever history
+    recHist = {
+        "date": dateString,
+        "action": "credit",
+        "amount": amount,
+        "total": reciever["wallet"]+amount
+    }
+    reciever["wallet"] = reciever["wallet"]+amount
+    reciever["history"].insert(0, recHist)
+
+    data = {
+        payee["username"]:payee,
+        reciever["username"]:reciever
+    }
+
+    with open("database.json", "w") as f:
+        json.dump(data, f)
+
+    return {"message": "Payment was successful"}
+
 # Get the secret identifier
-@app.get("/2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b")
-async def GetSecret():
+@app.post("/2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b")
+async def GetSecret(token: str = Depends(oauth2_scheme)):
     return JWT_SECRET
 
