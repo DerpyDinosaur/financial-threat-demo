@@ -2,7 +2,6 @@
 import Layout from '../../layouts/SlideShow.astro';
 
 import optus from "/images/optus.png";
-import airforce from "/images/us-airforce.png";
 import medibank from "/images/medibank.svg";
 import log4j from "/images/log4j.png";
 import openai from "/images/openai.png";
@@ -12,12 +11,11 @@ import openai from "/images/openai.png";
         <section class="flex justify-left items-center">
             <h1 class="text-8xl">Threats are not complex anymore</h1>
         </section>
-        <section class="grid grid-rows-3 grid-cols-2 items-center">
+        <section class="grid grid-rows-2 grid-cols-2 items-center">
             <img class="m-auto w-1/2 hover:scale-150 transition-all" src={optus}>
-            <img class="m-auto w-1/3 hover:scale-150 transition-all" src={airforce}>
             <img class="m-auto w-1/2 hover:scale-150 transition-all" src={medibank}>
             <img class="m-auto w-1/2 hover:scale-150 transition-all" src={log4j}>
-            <img class="m-auto w-1/3 col-span-2 hover:scale-150 transition-all" src={openai}>
+            <img class="m-auto w-1/2 hover:scale-150 transition-all" src={openai}>
         </section>
     </main>
 </Layout>

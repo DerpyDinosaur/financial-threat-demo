@@ -1,14 +1,11 @@
 # Presentation Notes
 
 ## Slide 1
-Quote is from a NASA Chief Flight Director, space flight has very little immediate impact to society. Yet changing this quotes theme to Cyber Security it’s more like we would say. 
-
-Cyber Security will always tolerate carelessness, incapacity, and neglect.
 
 ## Slide 2
-Introduction
+WHOAMI
 	- Where do I work
-	- Seamless Intelligence
+	- What do we do | Team of 16
 
 What do I do at my work
 	- Security Operation Center Developer aka The Dev Goon
@@ -23,19 +20,13 @@ What is this talk about:
 **Optus**
 	- API did not require authentication/authorization to access it
 	- Sensitive information was available on the API
-	- These are two counts of poorly implemented technology. Then their database structure combined with poor implementation allowed for easy lateral movements.
 
 **Medibank**
 	- Compromised credentials - which usually is a tell tale sign of we simply got phished
 
 **Log4j**
-	- Bad framework, many alternatives are better and less prone to issues.
+	- Minecraft accident effecting major vendors and too many websites.
 	- Silly features enabled by default, JNDI allowing external script execution on the Host.
-
-**US Air Force**
-	- Disgruntled employees can easily lead to severe information security breaches.
-	- A 20 year old working for the US Air Force intelligence division did not like how America conducts its espionage.
-	- Resulting documents leaked to a Discord server then Twitter.
 
 **OpenAI**
 	- Simple Cross Site Script attack allowing attackers to send links to their victims and steal their session.
@@ -53,54 +44,52 @@ Start the demonstration
 
 - 	Log in as Adam
 - 	Log in as Ian
-- 	Pull out my JWT
+- 	Pull out Adams JWT
 - 	Visit jwt.io, show how the JWT functions
 - 	Show reconnaissance for locating a hidden endpoint this would include
 	-	Brute forcing endpoints
 	-	Checking for documentation
 	-	Discovering active protocols like http, https, PUT, DELETE, POST, GET
 - 	Discover the lengthy string endpoint that reveals the key to the token.
-	- Try a get request
-	- Try a post request
-	- Try posting my token
--	Now that I know the secret move back to JWT 
+	- 	Try a get request
+	- 	Try a post request
+	- 	Try posting my token
+-	Use the /users endpoint to gain info about users
+-	Now that I know the secret move back to jwt.io and create a new JWT token for another user.
+- 	Use the /payment endpoint to send money to myself.
+-	Sign back into my account and show the results. 
 
 ## Slide 6
-**Out of 100 Businesses**
+**Number of Scams**
+As seen here Australia gets a lot more scams but there are many that is known by Malaysia that are not shared on public websites. At least none that I was able to find.
+
+**Percent of businesses surveyed experienced cyber attacks**
 Hong Kong---43%
 Indonesia---52%
 Japan-------52%
 Singapore---46%
 
-Half of those incidents reported result in data loss
+Half of all these reported incidents had actual data loss occur. 
 
-**Out of 100 Businesses**
-APAC Report 
-Australia
+**Solution priority**
+Australia favours very minorly money, tooling and training.
 
+Malaysia favours monitoring (Verry good), moving off prem, and increasing the budget.
 
-
-Do not derive who is better or worse with these numbers. This is to get everyone on the same page.
-
-Refer to Malaysia’s Fraud and Spam stats for “Scam”
-
-Australia and Malaysia are the same in population size.
-
-References
-Australia Scam Watch
-https://www.mcmc.gov.my/en/resources/publications/annual-reports
-https://www.mycert.org.my/portal/statistics-content?menu=b75e037d-6ee3-4d11-8169-66677d694932&id=4e056ced-6983-4487-a5d2-56c10879a24b
+Sadly both do not value seeking specialist help abroad or within country.
 
 
 ## Slide 7
 **Bad design and development**
--	Specialists or conducive testing should be done  
+-	Specialists or conducive testing should be done before letting your product is public.
 
 **Priorities**
 - 	Spending money on endless solutions wont work if we are missing the 
 	specialists to implement them.
 
 - 	Training is only relevant when you know your workforce is actually lacking.
+
+-	Response plans, 39% of companies in Oceania have response plans ready in the event of a cyber attack.
 
 **Communication**
 -	There is not enough information when breaches occur. Researchers have 
