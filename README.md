@@ -90,4 +90,18 @@ References
 Australia Scam Watch
 https://www.mcmc.gov.my/en/resources/publications/annual-reports
 https://www.mycert.org.my/portal/statistics-content?menu=b75e037d-6ee3-4d11-8169-66677d694932&id=4e056ced-6983-4487-a5d2-56c10879a24b
- 
+
+
+## Slide 7
+**Bad design and development**
+-	Specialists or conducive testing should be done  
+
+**Priorities**
+- 	Spending money on endless solutions wont work if we are missing the 
+	specialists to implement them.
+
+- 	Training is only relevant when you know your workforce is actually lacking.
+
+**Communication**
+-	There is not enough information when breaches occur. Researchers have 
+	nothing to prevent it happening to others. These vulnerabilities vanish into the ether without remedy.
