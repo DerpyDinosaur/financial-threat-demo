@@ -5,6 +5,14 @@ WORKDIR web
 COPY package*.json ./
 RUN npm install
 
+########## Development ##########
+
+FROM build as dev
+
+COPY . .
+
+ENTRYPOINT ["npm", "run", "preview"]
+
 ########## Production ##########
 
 FROM build as prod

@@ -43,16 +43,16 @@ const slideCount = slides.length+1;
               window.location.href = `${window.location.origin}/presentation/${Number(currentSlide)-1}`;
             }
 
-            // Left Click
-            document.addEventListener('click', function() {
-                forward();
-            });
-            // Right Click
-            document.addEventListener('contextmenu', function(event) {
-                // Prevents RIGHT CLICK from working
-                event.preventDefault();
-                backward();
-            });
+            // // Left Click
+            // document.addEventListener('click', function() {
+            //     forward();
+            // });
+            // // Right Click
+            // document.addEventListener('contextmenu', function(event) {
+            //     // Prevents RIGHT CLICK from working
+            //     event.preventDefault();
+            //     backward();
+            // });
             document.addEventListener('keydown', function(event){
                 if (event.keyCode === 39) { forward(); }
                 if (event.keyCode === 37) { backward(); }

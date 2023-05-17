@@ -4,33 +4,35 @@
 
 ## Slide 2
 WHOAMI
-	- Where do I work
-	- What do we do | Team of 16
+- 	Where do I work
+- 	What do we do | Team of 16
 
 What do I do at my work
-	- Security Operation Center Developer aka The Dev Goon
-	- Cloud Engineer for software and technologies
+- 	Security Operation Center Developer aka The Dev Goon
+- 	Cloud Engineer for software and technologies
+
+---
 
 What is this talk about:
-	- Threats are not complex anymore
-	- We some how can deal with large threats but not small ones
-	- What do we do moving forward
+- 	Threats are not complex anymore
+- 	We some how can deal with large threats but not small ones
+- 	What do we do moving forward
 
 ## Slide 3
 **Optus**
-	- API did not require authentication/authorization to access it
-	- Sensitive information was available on the API
+- API did not require authentication/authorization to access it
+- Sensitive information was available on the API
 
 **Medibank**
-	- Compromised credentials - which usually is a tell tale sign of we simply got phished
+- Compromised credentials - which usually is a tell tale sign of we simply got phished
 
 **Log4j**
-	- Minecraft accident effecting major vendors and too many websites.
-	- Silly features enabled by default, JNDI allowing external script execution on the Host.
+- Minecraft accident effecting major vendors and too many websites.
+- Silly features enabled by default, JNDI allowing external script execution on the Host.
 
 **OpenAI**
-	- Simple Cross Site Script attack allowing attackers to send links to their victims and steal their session.
-	- Which in turn allows them to view all of their searches and queries to OpenAI.
+- Simple Cross Site Script attack allowing attackers to send links to their victims and steal their session.s
+- Which in turn allows them to view all of their searches and queries to OpenAI.
 
 ## Slide 4
 **API Analogy**
